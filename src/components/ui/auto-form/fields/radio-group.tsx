@@ -4,7 +4,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Radio } from "pol-ui";
 import * as z from "zod";
 import AutoFormLabel from "../common/label";
 import AutoFormTooltip from "../common/tooltip";
@@ -37,23 +37,19 @@ export default function AutoFormRadioGroup({
           isRequired={isRequired}
         />
         <FormControl>
-          <RadioGroup
-            onValueChange={field.onChange}
-            defaultValue={field.value}
-            {...fieldProps}
-          >
+          <>
             {values?.map((value: any) => (
               <FormItem
                 key={value}
                 className="mb-2 flex items-center gap-3 space-y-0"
               >
                 <FormControl>
-                  <RadioGroupItem value={value} />
+                  <Radio value={value} name={field.name} {...fieldProps} />
                 </FormControl>
                 <FormLabel className="font-normal">{value}</FormLabel>
               </FormItem>
             ))}
-          </RadioGroup>
+          </>
         </FormControl>
         <FormMessage />
       </FormItem>

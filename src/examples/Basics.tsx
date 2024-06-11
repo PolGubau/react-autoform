@@ -1,13 +1,8 @@
 import * as z from "zod";
 import AutoForm, { AutoFormSubmit } from "../components/ui/auto-form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
+
 import { Button } from "../components/ui/button";
+import { Card, Divider } from "pol-ui";
 
 enum Sports {
   Football = "Football/Soccer",
@@ -22,6 +17,7 @@ const formSchema = z.object({
     .string({
       required_error: "Username is required.",
     })
+
     .min(2, {
       message: "Username must be at least 2 characters.",
     }),
@@ -87,89 +83,82 @@ const formSchema = z.object({
 
 function Basics() {
   return (
-    <>
-      <div className="mx-auto my-6 max-w-lg">
-        <Card>
-          <CardHeader>
-            <CardTitle>AutoForm Example</CardTitle>
-            <CardDescription>
-              Automatically generate a form from a Zod schema.
-            </CardDescription>
-          </CardHeader>
+    <Card className="border bg-secondary-50" childrenClass="w-full">
+      <header className="w-full">
+        <h2 className="text-2xl font-bold">AutoForm Example</h2>
+        Automatically generate a form from a Zod schema.
+        <Divider />
+      </header>
+      <AutoForm
+        formSchema={formSchema}
+        onSubmit={console.log}
+        fieldConfig={{
+          password: {
+            inputProps: {
+              type: "password",
+              placeholder: "••••••••",
+            },
+          },
+          favouriteNumber: {
+            description: "Your favourite number between 1 and 10.",
+          },
+          acceptTerms: {
+            inputProps: {
+              required: true,
+            },
+            description: (
+              <>
+                I agree to the{" "}
+                <Button
+                  className="p-0"
+                  variant={"link"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert("Terms and conditions clicked.");
+                  }}
+                >
+                  terms and conditions
+                </Button>
+                .
+              </>
+            ),
+          },
 
-          <CardContent>
-            <AutoForm
-              formSchema={formSchema}
-              onSubmit={console.log}
-              fieldConfig={{
-                password: {
-                  inputProps: {
-                    type: "password",
-                    placeholder: "••••••••",
-                  },
-                },
-                favouriteNumber: {
-                  description: "Your favourite number between 1 and 10.",
-                },
-                acceptTerms: {
-                  inputProps: {
-                    required: true,
-                  },
-                  description: (
-                    <>
-                      I agree to the{" "}
-                      <button
-                        className="text-primary underline"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          alert("Terms and conditions clicked.");
-                        }}
-                      >
-                        terms and conditions
-                      </button>
-                      .
-                    </>
-                  ),
-                },
+          birthday: {
+            description: "We need your birthday to send you a gift.",
+          },
 
-                birthday: {
-                  description: "We need your birthday to send you a gift.",
-                },
+          sendMeMails: {
+            fieldType: "switch",
+          },
 
-                sendMeMails: {
-                  fieldType: "switch",
-                },
+          bio: {
+            fieldType: "textarea",
+          },
 
-                bio: {
-                  fieldType: "textarea",
-                },
+          marshmallows: {
+            fieldType: "radio",
+          },
 
-                marshmallows: {
-                  fieldType: "radio",
-                },
+          customParent: {
+            renderParent: ({ children }) => (
+              <div className="flex items-end gap-3">
+                <div className="flex-1">{children}</div>
+                <div>
+                  <Button type="button">Check</Button>
+                </div>
+              </div>
+            ),
+          },
 
-                customParent: {
-                  renderParent: ({ children }) => (
-                    <div className="flex items-end gap-3">
-                      <div className="flex-1">{children}</div>
-                      <div>
-                        <Button type="button">Check</Button>
-                      </div>
-                    </div>
-                  ),
-                },
-
-                file: {
-                  fieldType: "file",
-                },
-              }}
-            >
-              <AutoFormSubmit>Send now</AutoFormSubmit>
-            </AutoForm>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+          file: {
+            fieldType: "file",
+          },
+        }}
+      >
+        <AutoFormSubmit>Send now</AutoFormSubmit>
+      </AutoForm>
+    </Card>
   );
 }
 

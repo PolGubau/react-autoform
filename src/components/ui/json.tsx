@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "pol-ui";
 
 function Json({ data, className }: { data: any; className?: string }) {
   return (

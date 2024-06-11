@@ -1,4 +1,4 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "pol-ui";
 import { FormControl, FormItem } from "@/components/ui/form";
 import AutoFormTooltip from "../common/tooltip";
 import { AutoFormInputComponentProps } from "../types";
@@ -17,8 +17,9 @@ export default function AutoFormCheckbox({
         <div className="mb-3 flex items-center gap-3">
           <FormControl>
             <Checkbox
-              checked={field.value}
-              onCheckedChange={field.onChange}
+              checked={field.value ?? false}
+              value={field.value ?? false}
+              onChange={field.onChange}
               {...fieldProps}
             />
           </FormControl>

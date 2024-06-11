@@ -493,7 +493,7 @@ Alternatively, you can pass a React component to the `fieldType` property to use
           <FormControl>
             <Switch
               checked={field.value}
-              onCheckedChange={field.onChange}
+              onChange={field.onChange}
               {...fieldProps}
             />
           </FormControl>

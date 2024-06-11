@@ -9,14 +9,10 @@ import { useForm, useFormContext } from "react-hook-form";
 import * as z from "zod";
 import { DEFAULT_ZOD_HANDLERS, INPUT_COMPONENTS } from "../config";
 import { Dependency, FieldConfig, FieldConfigItem } from "../types";
-import {
-  beautifyObjectName,
-  getBaseSchema,
-  getBaseType,
-  zodToHtmlInputProps,
-} from "../utils";
+import { getBaseSchema, getBaseType, zodToHtmlInputProps } from "../utils";
 import AutoFormArray from "./array";
 import resolveDependencies from "../dependencies";
+import { formatString } from "pol-ui";
 
 function DefaultParent({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
@@ -68,7 +64,7 @@ export default function AutoFormObject<
         let item = shape[name] as z.ZodAny;
         item = handleIfZodNumber(item) as z.ZodAny;
         const zodBaseType = getBaseType(item);
-        const itemName = item._def.description ?? beautifyObjectName(name);
+        const itemName = item._def.description ?? formatString(name);
         const key = [...path, name].join(".");
 
         const {

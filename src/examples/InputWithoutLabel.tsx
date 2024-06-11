@@ -32,7 +32,6 @@ function InputWithoutLabel() {
                 username: {
                   inputProps: {
                     showLabel: false,
-                    placeholder: "Username",
                   },
                   renderParent: ({ children }) => (
                     <div className="flex items-end gap-3">
