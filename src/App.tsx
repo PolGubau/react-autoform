@@ -1,4 +1,4 @@
-import { DarkThemeToggle, IconButton, Link, useThemeMode } from "pol-ui";
+import { DarkThemeToggle, useThemeMode } from "pol-ui";
 import Api from "./examples/Api";
 import Array from "./examples/Array";
 import Basics from "./examples/Basics";
