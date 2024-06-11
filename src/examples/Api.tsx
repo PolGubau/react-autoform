@@ -29,26 +29,24 @@ function Api() {
   }, []);
 
   return (
-    <>
-      <div className="mx-auto my-6 max-w-lg">
-        <Card>
-          <CardHeader>
-            <CardTitle>API Example</CardTitle>
-            <CardDescription>
-              The form select options are fetched from an API.
-            </CardDescription>
-          </CardHeader>
+    <div className="mx-auto my-6 max-w-lg">
+      <Card>
+        <CardHeader>
+          <CardTitle>API Example</CardTitle>
+          <CardDescription>
+            The form select options are fetched from an API.
+          </CardDescription>
+        </CardHeader>
 
-          <CardContent>
-            {formSchema ? (
-              <AutoForm formSchema={formSchema} onSubmit={console.log} />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </>
+        <CardContent>
+          {formSchema ? (
+            <AutoForm formSchema={formSchema} onSubmit={console.log} />
+          ) : (
+            <div>Loading...</div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
